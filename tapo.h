@@ -1,0 +1,8 @@
+﻿#ifndef _TAPOONVIFCLIENT_H_
+#define _TAPOONVIFCLIENT_H_
+
+#define APPNAME 			"ONVIF client"
+#define HTTPFILESTORAGE 	LOCAL_FILE_STORAGE
+
+#endif
+// END OF FILE
