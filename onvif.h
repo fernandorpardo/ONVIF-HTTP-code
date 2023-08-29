@@ -1,8 +1,8 @@
 #ifndef _ONVIF_H_
 #define _ONVIF_H_
 
-#define DEVICE_ACCOUNT_USERNAME	"iambobot"
-#define	DEVICE_ACCOUNT_PASSWORD "1Kilodepaja"
+#define DEVICE_ACCOUNT_USERNAME	"yourusername"
+#define	DEVICE_ACCOUNT_PASSWORD "yourpassword"
 
 #define ONVIF_SERVICE 			"onvif/service"
 #define DEFAULT_DEVICE_IP 		"192.168.1.127"
