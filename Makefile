@@ -1,8 +1,8 @@
 CFLAGS = -Wall -g -fmax-errors=2
 CC= g++ -std=c++0x
 BIN=tapo
-HEADERS= tapo.h cl.h glib.h cstr.h HTTPlib.h onvif.h webserver.h debug.h local.h
-OBJS=tapo.o cl.o glib.o cstr.o HTTPlib.o onvif.o webserver.o debug.o
+HEADERS= tapo.h cl.h glib.h cstr.h HTTPlib.h onvif.h server.h local.h
+OBJS=tapo.o cl.o glib.o cstr.o HTTPlib.o onvif.o server.o 
 ZLIBOBJS= ../zlib-1.2.13/adler32.o ../zlib-1.2.13/gzlib.o ../zlib-1.2.13/compress.o ../zlib-1.2.13/gzread.o \
 ../zlib-1.2.13/crc32.o ../zlib-1.2.13/gzwrite.o ../zlib-1.2.13/trees.o ../zlib-1.2.13/deflate.o \
 ../zlib-1.2.13/infback.o  ../zlib-1.2.13/uncompr.o ../zlib-1.2.13/inffast.o ../zlib-1.2.13/zutil.o \
@@ -17,8 +17,6 @@ ifdef ZLIB
 endif
 version: 
 	$(CC) $(CFLAGS) -c version.cpp -o version.o	
-debug.o: debug.cpp debug.h
-	$(CC) $(CFLAGS) -c debug.cpp -o debug.o
 cl.o: cl.cpp cl.h
 	$(CC) $(CFLAGS) -c cl.cpp -o cl.o
 glib.o: glib.cpp glib.h
@@ -33,8 +31,8 @@ else
 endif
 onvif.o: onvif.cpp onvif.h
 	$(CC) $(CFLAGS) -c onvif.cpp -o onvif.o
-webserver.o: webserver.cpp webserver.h
-	$(CC) $(CFLAGS) -c webserver.cpp -o webserver.o
+server.o: server.cpp server.h
+	$(CC) $(CFLAGS) -c server.cpp -o server.o
 tapo.o: tapo.cpp tapo.h $(HEADERS)
 	$(CC) $(CFLAGS) -c $(BIN).cpp -o $(BIN).o
 tapo: $(OBJS) version

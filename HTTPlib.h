@@ -1,7 +1,7 @@
 ﻿#ifndef _HTTPLIB_H_
 #define _HTTPLIB_H_
 
-#define HTTPLIB_VERSION	"1.1.2"
+#define HTTPLIB_VERSION	"1.2.0"
 
 // Temporal files
 #define INTERMEDIATE_GZIP_FILE_EXT 	".gzip"	// is an intermediate file to store the data in GZIP, is the data source for payload_inflate()

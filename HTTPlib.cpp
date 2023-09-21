@@ -9,6 +9,7 @@
  * 1.1.0 - August 2022
  *		hhtpGET - is DEPRECATED
  *		HTTPrequest - function to manage HTTP (no SSL) GET & POST
+ * 1.2.0 - 01 Sep 2023 Commons version from tapo.d
  *
  * take a look to
  * https://www.geeksforgeeks.org/socket-programming-cc/
@@ -27,7 +28,6 @@
 #include <unistd.h>
 #include "cstr.h"					// HTTPHeader_ functions
 #include "HTTPlib.h"
-
 
 #ifdef ZLIB_SUPPORT
 #include "../zlib-1.2.13/zlib.h"	// inflate
@@ -51,10 +51,6 @@ int HTTPrequest(const char* storage, const char *servername, const char* serverp
 {
 	char htmlcode[1024];
 	char str[128];
-	//struct sockaddr_in servaddr;
-	//char **pptr;
-	//struct hostent *hptr;
-	
 	char output_file[128];
 	char gzip_file[128];
 	snprintf(output_file, sizeof(output_file), "%s%s", storage, HTTP_OUTPUT_FILE_EXT);
@@ -74,6 +70,9 @@ int HTTPrequest(const char* storage, const char *servername, const char* serverp
 	}
  
 	/*
+	struct sockaddr_in servaddr;
+	char **pptr;
+	struct hostent *hptr;
 	if((hptr = gethostbyname(servername)) == NULL)
 		printf("\nERROR gethostbyname\n");
 
