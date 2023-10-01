@@ -1,4 +1,4 @@
-# ONVIF-HTTP-code
+# ONVIF HTTP
 C++ implementation of the ONVIF protocol at HTTP level
 
 ## About
@@ -33,9 +33,9 @@ In Linux a TCP connection is stablished creating a socket, and the data is sent 
 You can take the kind of text string above and send it over to the camera using the language and OS of your choice and it will work the same. The complexity is in the generation of the XML part; all the rest is a no-brainer.
 
 ## A simple case
-The simplest case is the **GetSystemDateAndTime** that does not require authentication.
+The simplest case is the **GetSystemDateAndTime** because it does not require authentication.
 
-Let assume your camera’s IP address is 192.168.1.127
+Let's assume your camera’s IP address is 192.168.1.127
 
 TAPO camera ONVIF server is listening at PORT 2020.
 
@@ -43,7 +43,7 @@ To retrieve date and time information of the camera, you need to:
 
 (1) open a TCP connection to 192.168.1.127:2020
 
-(2) Over the open connection, send the following text
+(2) Over the open connection, send the following text:
 ```xml
 POST /onvif/service HTTP/1.1
 Host: 192.168.1.127
@@ -63,7 +63,7 @@ Content-Length: 229
 </s:Envelope>
 ```
 
-(3) Wait for the response (this what I get from the C500)
+(3) Wait for the response (this what I get from the C500):
 ```xml
 HTTP/1.1 200 OK
 Connection: close
