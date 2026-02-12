@@ -28,18 +28,18 @@ Content-Length: … payload length …
 <? … here the SOAP message … >
 ```
 
-In Linux a TCP connection is stablished creating a socket, and the data is sent and received using the write() and read() functions.
+In Linux, a TCP connection is stablished creating a socket, and the data is sent and received using the write() and read() functions.
 
 You can take the kind of text string above and send it over to the camera using the language and OS of your choice and it will work the same. The complexity is in the generation of the XML part; all the rest is a no-brainer.
 
 ## A simple case
-The simplest case is the **GetSystemDateAndTime** because it does not require authentication.
+The simplest case is the operation **GetSystemDateAndTime** because it does not require authentication.
 
 Let's assume your camera’s IP address is 192.168.1.127
 
 TAPO camera ONVIF server is listening at PORT 2020.
 
-To retrieve date and time information of the camera, you need to:
+To retrieve the date and time information from the camera, you need to:
 
 (1) open a TCP connection to 192.168.1.127:2020
 
@@ -63,7 +63,7 @@ Content-Length: 229
 </s:Envelope>
 ```
 
-(3) Wait for the response (this what I get from the C500):
+(3) Wait for the response (this is what I get from the C500):
 ```xml
 HTTP/1.1 200 OK
 Connection: close
@@ -112,7 +112,7 @@ Content-Length: 2461
 
 
 ## Authentication
-All except **GetSystemDateAndTime** and **GetCapabilities** requests require client authentication (this is the observed behaviour with the TAPO cameras listed).
+All except **GetSystemDateAndTime** and **GetCapabilities** operations require client authentication (this is the observed behaviour with the TAPO cameras listed).
 
 Authentication is defined in [“ONVIF Application Programmer's Guide – 6. Security”](https://www.onvif.org/wp-content/uploads/2016/12/ONVIF_WG-APG-Application_Programmers_Guide-1.pdf).
 
@@ -141,11 +141,14 @@ The **UsernameToken** has 4 parameters:
 
 To better understand these parameters, you can see how to generate them in Python that works well as pseudocode:
 ```python
-	created = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z")
-
+	# nonce
 	raw_nonce = os.urandom(20)
 	nonce = base64.b64encode(raw_nonce)
 
+	# created
+	created = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+	# digest
 	sha1 = hashlib.sha1()
 	sha1.update(raw_nonce + created.encode('utf8') + password.encode('utf8'))
 	raw_digest = sha1.digest()
